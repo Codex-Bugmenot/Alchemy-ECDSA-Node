@@ -1,6 +1,8 @@
 import { useState } from "react";
 import server from "./server";
 
+//const keys = [b1d62df1b4e70b372ce9a7c653d0a59821c9ccdfae9efeedb2374d9ddd393d16, cba175afdce8a3863e8fb65c6837a8c28a3e2ecb7af8e28311517a3fd4bd1cd7, c8e5cea472b86985c92670a1a6675665c59a2b39a6b58ffe659b7ac3a69ea861];
+
 function Transfer({ address, setBalance }) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
@@ -51,4 +53,6 @@ function Transfer({ address, setBalance }) {
   );
 }
 
+
 export default Transfer;
+
