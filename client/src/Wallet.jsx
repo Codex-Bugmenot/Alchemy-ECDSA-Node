@@ -20,7 +20,7 @@ function Wallet({ address, setAddress, balance, setBalance }) {
       <h1>Your Wallet</h1>
 
       <label>
-        Wallet Address
+        Public Key
         <input placeholder="Type an address, for example: 0x1" value={address} onChange={onChange}></input>
       </label>
 
