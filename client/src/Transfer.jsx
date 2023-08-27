@@ -18,7 +18,7 @@ async function sign(address, data) {
     let addr1 = toHex(keccak256(hexToBytes(address.toString()).slice(1)).slice(-20));
     if (addr1 === addr) {
       let signature = await secp256k1.sign(data, hexToBytes(keys[i]));
-      console.log("private key  is : " + keys[i]);
+
       const jsonSignature = JSON.stringify(signature, (key, value) =>
         typeof value === 'bigint'
           ? value.toString()
