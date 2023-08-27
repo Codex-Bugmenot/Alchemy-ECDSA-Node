@@ -6,7 +6,7 @@ In this Project users can:
 3. Click on transfer to Send the amount to the Recipient Address
 - Under the hood the Public key cryptography is Incorporated
 - Private Key is Never used on server-side , It is only used on client-side for Signing the Transaction.
-- Many Ideas were Generated with the help of Alchemy University Community (Everyone who Gave Suggestions are Considered Contributors of this Project )   
+- Many Ideas were Generated with the help of Alchemy University Community (Everyone who gave Suggestions are Considered Contributors of this Project )   
 ## ECDSA Node
 
 This project is an example of using a client and server to facilitate transfers between different addresses. Since there is just a single server on the back-end handling transfers, this is clearly very centralized. We won't worry about distributed consensus for this project.
