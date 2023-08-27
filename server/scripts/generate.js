@@ -8,14 +8,15 @@ const privatekey = secp256k1.utils.randomPrivateKey();
 const publickey = secp256k1.getPublicKey(privatekey);
 const addr = keccak256(publickey.slice(1)).slice(-20);
 
-const a = ["c8e5cea472b86985c92670a1a6675665c59a2b39a6b58ffe659b7ac3a69ea861"];
-const pub1 = secp256k1.getPublicKey(hexToBytes(a[0]));
-const addr1 = keccak256(pub1.slice(1)).slice(-20);
+//Experimantal conversions to check how hex bytes and utf move from one module to other
+// const a = ["c8e5cea472b86985c92670a1a6675665c59a2b39a6b58ffe659b7ac3a69ea861"];
+// const pub1 = secp256k1.getPublicKey(hexToBytes(a[0]));
+// const addr1 = keccak256(pub1.slice(1)).slice(-20);
 
 
-// console.log("----Private Key----- :", toHex(privatekey));
-// console.log("----Public Key------  :", toHex(publickey));
-// console.log("----Address--------:", toHex(addr));
-// console.log("----Address--------:", toHex(addr1));
-console.log("----Public Key------  :", toHex(pub1));
+console.log("----Private Key----- :", toHex(privatekey));
+console.log("----Public Key------  :", toHex(publickey));
+console.log("----Address--------:", toHex(addr));
+console.log("----Address--------:", toHex(addr1));
+//console.log("----Public Key------  :", toHex(pub1));
 

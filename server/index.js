@@ -19,6 +19,7 @@ const balances = {
   "8f25c3e17106f96b57eb7bd00907c5cfc4232fc8": 75,
 };
 
+//Changed app.get to convert entered Public key(address) to the Stored Wallet Address in Index.js and send back Balance
 app.get("/balance/:address", (req, res) => {
   const { address } = req.params;
   const pubtoaddr = toHex(keccak256(hexToBytes(address).slice(1)).slice(-20));
@@ -30,14 +31,10 @@ app.post("/send", (req, res) => {
   const { signature, sender, msgHash, amount, recipient } = req.body;
 
 
-  // if (signature === undefined) {
-  //   res.status(400).send({ message: "invalid signature" });
-  // }
-  // if (msgHash === undefined) {
-  //   res.status(400).send({ message: "Empty Message Hash" });
-  // }
+
 
   let sig = JSON.parse(signature);
+  //console.log all the params recieved to check on server side if they are correctly recieved
   console.log(signature);
   console.log("public key address: " + sender);
   console.log("Amount: " + amount)
@@ -46,8 +43,7 @@ app.post("/send", (req, res) => {
   sig.r = BigInt(sig.r);
   sig.s = BigInt(sig.s);
 
-  //const [sign, recoveryBit] = signature;
-  //signed = new Uint8Array(object.values(sign));
+
 
   const isVerified = secp256k1.verify(sig, msgHash, sender);
   if (!isVerified) {
@@ -55,13 +51,13 @@ app.post("/send", (req, res) => {
   }
 
   const sender1 = toHex(keccak256(hexToBytes(sender).slice(1)).slice(-20));
+
+  //if the console.log works then the program has passed all the stages above
   console.log("sender1 address: " + sender1);
-  //tx.sender = keccak256(tx.sender.slice(1)).slice(-20);
+
   setInitialBalance(sender1);
   setInitialBalance(recipient);
-  // if (tx.sender !== toHex(keccak256(publickey.slice(1)).slice(-20))) {
-  //   res.status(400).send({ message: "You can't send funds from this account" });
-  // }
+
   if (balances[sender1] < amount || amount < 0) {
     res.status(400).send({ message: "Not enough funds! or invalid Amount" });
   } else {
@@ -69,6 +65,8 @@ app.post("/send", (req, res) => {
     balances[recipient] += amount;
     res.send({ balance: balances[sender1] });
   }
+  //final log 
+  //this is only emitted if the transfer is successful
   console.log("Sent amount: " + amount + " from sender: " + sender1 + " to " + recipient + " Successfully");
 });
 

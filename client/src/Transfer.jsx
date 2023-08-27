@@ -14,15 +14,19 @@ async function sign(address, data) {
   for (let i = 0; i < keys.length; i++) {
 
     let publickey = secp256k1.getPublicKey(hexToBytes(keys[i]));
+
     let addr = toHex(keccak256(publickey.slice(1)).slice(-20));
+    //converting the Public Key (address) to wallet address (addr1)
+    //we can directly compare Public Keys since the conversion done below is a it roundabout 
     let addr1 = toHex(keccak256(hexToBytes(address.toString()).slice(1)).slice(-20));
     if (addr1 === addr) {
       let signature = await secp256k1.sign(data, hexToBytes(keys[i]));
+      // one can console.log here just to check if the steps above work correctly
 
       const jsonSignature = JSON.stringify(signature, (key, value) =>
         typeof value === 'bigint'
           ? value.toString()
-          : value // return everything else unchanged
+          : value
       );
       return jsonSignature;
 
@@ -42,20 +46,17 @@ function Transfer({ address, setBalance }) {
 
   async function transfer(evt) {
     evt.preventDefault();
-    // const tx = {
-    //   sender: address,
-    //   amount: parseInt(sendAmount),
-    //   recipient,
-    // }
+
 
     const Message = address + "_" + sendAmount + "_" + recipient;
     const Hash = toHex(hashMessage(Message));
     console.log("Hash is :", Hash);
-    // const Hash = hashMessage(JSON.stringify(tx));
+
     const signature = await sign(address, Hash);
     console.log("Signature is :", signature);
 
     try {
+      //once we click thansfer these logs will be the first to be emitted
       console.log("public key address: " + address);
       console.log("sendAmount: " + sendAmount);
       console.log("recipient: " + recipient);
