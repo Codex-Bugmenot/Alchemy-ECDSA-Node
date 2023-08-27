@@ -56,7 +56,7 @@ function Transfer({ address, setBalance }) {
     console.log("Signature is :", signature);
 
     try {
-      //once we click thansfer these logs will be the first to be emitted
+      //once we click transfer these logs will be the first to be emitted
       console.log("public key address: " + address);
       console.log("sendAmount: " + sendAmount);
       console.log("recipient: " + recipient);
