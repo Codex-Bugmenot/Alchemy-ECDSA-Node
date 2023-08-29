@@ -67,7 +67,7 @@ app.post("/send", (req, res) => {
   }
   //final log 
   //this is only emitted if the transfer is successful
-  console.log("Sent amount: " + amount + " from sender: " + sender1 + " to " + recipient + " Successfully");
+  console.log("Sent amount: " + amount + " from sender: " + sender1 + " to " + "Recipient: " + recipient + " Successfully");
 });
 
 
