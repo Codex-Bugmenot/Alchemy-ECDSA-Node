@@ -35,7 +35,7 @@ app.post("/send", (req, res) => {
 
   let sig = JSON.parse(signature);
   //console.log all the params recieved to check on server side if they are correctly recieved
-  console.log(signature);
+  console.log("Signature: " + signature);
   console.log("public key address: " + sender);
   console.log("Amount: " + amount)
   console.log("recipient: " + recipient)
