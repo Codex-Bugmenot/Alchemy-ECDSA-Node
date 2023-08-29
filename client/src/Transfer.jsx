@@ -17,7 +17,7 @@ async function sign(address, data) {
 
     let addr = toHex(keccak256(publickey.slice(1)).slice(-20));
     //converting the Public Key (address) to wallet address (addr1)
-    //we can directly compare Public Keys since the conversion done below is a it roundabout 
+    //we can directly compare Public Keys since the conversion done below is a bit roundabout 
     let addr1 = toHex(keccak256(hexToBytes(address.toString()).slice(1)).slice(-20));
     if (addr1 === addr) {
       let signature = await secp256k1.sign(data, hexToBytes(keys[i]));
